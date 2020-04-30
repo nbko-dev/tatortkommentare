@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Tatort, Kommentare, Twitter">
+    <meta name="description" content="Sammlung der Kommentare der heutigen Tatortsepisode auf Twitter">
+    <meta name="application-name" content="Tatort Kommentare">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <script src="https://kit.fontawesome.com/220a16b10a.js" crossorigin="anonymous"></script>
+    <title>Tatort Kommentare</title>
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <h1 class="hide">Tatort</h1>
+            <h1 id="kommentare" onclick="topFunction()">Kommentare</h1>
+        </div>
+    </header>
+    <section>
+        <!-- Info -->
+        <span id="title" class="block">letzte Episode:&nbsp;</span>
+        <span id="broadcastDate" class="date block">{{ date }}</span>
+        <h2 id="subject" class="block"><a href="{{ episode }}" target="_blank">{{ subject }}</a></h2>
+        <h4 id="location"><b>Tatort:</b>&nbsp;{{ location }}</h4>
+        <h4 id="commissioner"><b>Kommissare:</b>&nbsp;{{ commissioner }}</h4>
+        <!-- Nav -->
+        <h3><i class="fab fa-twitter"></i>&nbsp;&nbsp;auf Twitter</h3>
+        <!-- Tweets -->
+        <article>
+            {% for n in result %}
+                <div class="tweet">
+                    <div class="twtContentBox">
+                        <p class="tweetId inlineBlock">{{ n['id'] }}</p>
+                        <p class="date inlineBlock right">{{ n['tweet_date'] }}</p>
+                        <p class="tweetContent">{{ n['tweet'] }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </article>
+        <!-- Button To Top -->
+        <button onclick="topFunction()" id="topBtn" title="Go to top">
+            <i class="fas fa-chevron-circle-up"></i>
+        </button>
+    </section>
+    <footer>
+        <p class="footer">published by NBKO&nbsp;<a href="https://github.com/nbko-dev" target="_blank" id="github"><i
+                class="fab fa-github-alt"></i></a></p>
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
