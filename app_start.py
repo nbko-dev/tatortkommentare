@@ -7,7 +7,6 @@ import ssl
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen
 from flask import Flask, render_template, request, abort
-from boto.s3.connection import S3Connection
 
 # Ignore SSL certificate errors
 ctx = ssl.create_default_context()
@@ -16,10 +15,10 @@ ctx.verify_mode = ssl.CERT_NONE
 
 # Get Twitter API Access Token & Key
 # s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
-CONSUMER_KEY = os.environ["CONSUMER_KEY"]
-CONSUMER_SECRET = os.environ["CONSUMER_SECRET"]
-ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
-ACCESS_TOKEN_SECRET = os.environ["ACCESS_TOKEN_SECRET"]
+CONSUMER_KEY = os.environ.get("CONSUMER_KEY")
+CONSUMER_SECRET = os.environ.get("CONSUMER_SECRET")
+ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
+ACCESS_TOKEN_SECRET = os.environ.get("ACCESS_TOKEN_SECRET")
 
 # Create Handler
 auth = tw.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
