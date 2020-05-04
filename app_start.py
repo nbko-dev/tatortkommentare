@@ -1,3 +1,4 @@
+import os
 import tweepy as tw
 import re
 import datetime, time
@@ -6,7 +7,7 @@ import ssl
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen
 from flask import Flask, render_template, request, abort
-import os, json
+from boto.s3.connection import S3Connection
 
 # Ignore SSL certificate errors
 ctx = ssl.create_default_context()
@@ -14,21 +15,11 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 # Get Twitter API Access Token & Key
-secret_file = os.path.join('./', 'secrets.json')
-
-with open(secret_file) as f:
-    secrets = json.loads(f.read())
-
-def get_secret(setting, secrets=secrets):
-    try:
-        return secrets[setting]
-    except KeyError:
-        raise abort(404, description="Resource not found")
-
-CONSUMER_KEY = get_secret("CONSUMER_KEY")
-CONSUMER_SECRET = get_secret("CONSUMER_SECRET")
-ACCESS_TOKEN = get_secret("ACCESS_TOKEN")
-ACCESS_TOKEN_SECRET = get_secret("ACCESS_TOKEN_SECRET")
+# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+CONSUMER_KEY = os.environ["CONSUMER_KEY"]
+CONSUMER_SECRET = os.environ["CONSUMER_SECRET"]
+ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
+ACCESS_TOKEN_SECRET = os.environ["ACCESS_TOKEN_SECRET"]
 
 # Create Handler
 auth = tw.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
