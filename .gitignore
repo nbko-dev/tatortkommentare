@@ -126,3 +126,6 @@ dmypy.json
 
 # secret_key
 secrets.json
+
+# test page
+index_test.html
