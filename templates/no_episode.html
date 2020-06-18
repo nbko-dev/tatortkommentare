@@ -14,10 +14,16 @@
 <body>
     <article>
         <img src="{{ url_for('static', filename='img/hoppla.png')}}" alt="hoppla!" class="main">
-        <p>
+        <p class="description">
             Es gab keine neue Episode letzte Woche!<br>
             Bis zur nächsten Woche ❤
         </p>
     </article>
+    <footer>
+        <p class="footer">published by NBKO&nbsp;<a href="https://github.com/nbko-dev" target="_blank"
+                                                    id="github"><img src="{{ url_for('static',
+                filename='img/github-alt-brands.svg')
+                }}" class="icon-github-alt"></img></a></p>
+    </footer>
 </body>
 </html>

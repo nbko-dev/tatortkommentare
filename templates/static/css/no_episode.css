@@ -28,8 +28,33 @@ img.main {
     margin: 12vh 0;
 }
 
-p {
+.description {
     font-size: 1.5rem;
     line-height: 2.5rem;
     color: #464646;
+}
+
+footer {
+    text-align: center;
+    height: 60px;
+    width: 100vw;
+    background-color: #222b7a;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer {
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+
+.icon-github-alt {
+    display: inline-block;
+    width: 1.5rem;
 }
